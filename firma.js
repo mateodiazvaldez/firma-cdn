@@ -1,53 +1,58 @@
-/**
- * FIRMA DINÁMICA - MATEO & SOCIO
- * Este script inyecta los créditos en el footer de los clientes.
- * Se usa una IIFE (función autoejecutable) para no ensuciar el scope global del cliente.
- */
-
 (function() {
-    // 1. CONFIGURACIÓN CENTRALIZADA
-    // Cambia esto aquí y se actualizará en TODOS tus clientes al instante.
     const config = {
-        texto: "Diseño y Desarrollo: Mateo Díaz & Santiago Cilento",
-        // Enlace a WhatsApp API. Reemplaza los X con el número real.
-        url: "https://www.linkedin.com/in/mateo-diaz-valdez-9a13b6314/",
-        // El ID del contenedor HTML donde vamos a inyectar la firma
+        // Usa emojis o iconos si quieres darle personalidad
+        texto: "✨ Diseño y Estrategia: Mateo & Santiago", 
+        url: "https://wa.me/549XXXXXXXXXX?text=Hola,%20vi%20tu%20trabajo",
         targetId: "dev-credits"
     };
 
-    // 2. BUSQUEDA SEGURA
-    // Buscamos si el sitio web actual tiene el contenedor preparado.
     const contenedor = document.getElementById(config.targetId);
 
-    // 3. INYECCIÓN (Solo si existe el contenedor)
     if (contenedor) {
-        // Creamos el enlace de forma programática para más seguridad que innerHTML puro
         const enlace = document.createElement('a');
-        
         enlace.href = config.url;
         enlace.textContent = config.texto;
+        enlace.target = "_blank";
+        enlace.rel = "noopener noreferrer";
+
+        // --- ESTILOS VISUALES (El cambio importante) ---
         
-        // Atributos de seguridad y UX
-        enlace.target = "_blank";       // Abrir en nueva pestaña
-        enlace.rel = "noopener noreferrer"; // Previene ataques de seguridad (Tabnabbing)
-        
-        // Estilos base para asegurar que se vea bien sin importar el CSS del cliente
-        // (El cliente puede sobrescribir esto con CSS si quiere, pero esto es un fallback)
-        enlace.style.textDecoration = "none";
-        enlace.style.color = "inherit"; // Hereda el color del footer del cliente
-        enlace.style.opacity = "0.8";   // Un poco sutil
-        enlace.style.fontSize = "0.9em";
+        // 1. Tipografía y Estructura
+        enlace.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+        enlace.style.fontSize = "12px"; // Pequeño y elegante
         enlace.style.fontWeight = "500";
-        enlace.style.transition = "opacity 0.2s";
-
-        // Efecto hover simple con JS
-        enlace.onmouseover = () => enlace.style.opacity = "1";
-        enlace.onmouseout = () => enlace.style.opacity = "0.8";
-
-        // Limpiamos cualquier cosa que hubiera y ponemos la firma
-        contenedor.innerHTML = ''; 
-        contenedor.appendChild(enlace);
+        enlace.style.letterSpacing = "0.5px"; // Un poco de aire entre letras
+        enlace.style.textDecoration = "none";
         
-        console.log("Firma de desarrollador inyectada correctamente.");
+        // 2. Colores y "Look"
+        // Forzamos un color claro para que contraste bien con el fondo oscuro
+        enlace.style.color = "rgba(255, 255, 255, 0.7)"; 
+        enlace.style.backgroundColor = "rgba(255, 255, 255, 0.05)"; // Fondo ultra sutil
+        enlace.style.padding = "6px 12px"; // Aire alrededor del texto
+        enlace.style.borderRadius = "20px"; // Bordes totalmente redondos (Pill shape)
+        enlace.style.border = "1px solid rgba(255, 255, 255, 0.1)"; // Borde casi invisible
+        
+        // 3. Posicionamiento
+        enlace.style.display = "inline-block"; // Necesario para que el padding funcione
+        enlace.style.transition = "all 0.3s ease"; // Suavidad en el hover
+
+        // --- INTERACTIVIDAD ---
+        enlace.onmouseover = () => {
+            enlace.style.color = "#ffffff"; // Blanco puro al pasar el mouse
+            enlace.style.backgroundColor = "rgba(255, 255, 255, 0.15)"; // Fondo más visible
+            enlace.style.borderColor = "rgba(255, 255, 255, 0.3)";
+            enlace.style.cursor = "pointer";
+            enlace.style.transform = "translateY(-1px)"; // Se eleva un poquito
+        };
+
+        enlace.onmouseout = () => {
+            enlace.style.color = "rgba(255, 255, 255, 0.7)";
+            enlace.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+            enlace.style.borderColor = "rgba(255, 255, 255, 0.1)";
+            enlace.style.transform = "translateY(0)";
+        };
+
+        contenedor.innerHTML = '';
+        contenedor.appendChild(enlace);
     }
 })();
