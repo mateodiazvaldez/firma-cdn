@@ -2,8 +2,8 @@
     const config = {
         targetId: "dev-credits",
         // RELLENA ESTAS URLS O LOS LINKS NO SERVIRÁN DE NADA
-        santiagoUrl: "https://wa.me/NUMERO_DE_SANTIAGO", 
-        mateoUrl: "https://wa.me/NUMERO_DE_MATEO"       
+        santiagoUrl: "https://www.linkedin.com/in/santiago-cilento-243744334/", 
+        mateoUrl: "https://www.linkedin.com/in/mateo-diaz-valdez-9a13b6314/"       
     };
 
     const contenedor = document.getElementById(config.targetId);
