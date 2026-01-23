@@ -1,58 +1,38 @@
 (function() {
     const config = {
-        // Usa emojis o iconos si quieres darle personalidad
-        texto: "✨ Diseño y Estrategia: Mateo & Santiago", 
-        url: "https://wa.me/549XXXXXXXXXX?text=Hola,%20vi%20tu%20trabajo",
-        targetId: "dev-credits"
+        targetId: "dev-credits",
+        // RELLENA ESTAS URLS O LOS LINKS NO SERVIRÁN DE NADA
+        santiagoUrl: "https://wa.me/NUMERO_DE_SANTIAGO", 
+        mateoUrl: "https://wa.me/NUMERO_DE_MATEO"       
     };
 
     const contenedor = document.getElementById(config.targetId);
 
     if (contenedor) {
-        const enlace = document.createElement('a');
-        enlace.href = config.url;
-        enlace.textContent = config.texto;
-        enlace.target = "_blank";
-        enlace.rel = "noopener noreferrer";
+        contenedor.innerHTML = ''; // Limpia cualquier contenido previo
 
-        // --- ESTILOS VISUALES (El cambio importante) ---
-        
-        // 1. Tipografía y Estructura
-        enlace.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
-        enlace.style.fontSize = "12px"; // Pequeño y elegante
-        enlace.style.fontWeight = "500";
-        enlace.style.letterSpacing = "0.5px"; // Un poco de aire entre letras
-        enlace.style.textDecoration = "none";
-        
-        // 2. Colores y "Look"
-        // Forzamos un color claro para que contraste bien con el fondo oscuro
-        enlace.style.color = "rgba(255, 255, 255, 0.7)"; 
-        enlace.style.backgroundColor = "rgba(255, 255, 255, 0.05)"; // Fondo ultra sutil
-        enlace.style.padding = "6px 12px"; // Aire alrededor del texto
-        enlace.style.borderRadius = "20px"; // Bordes totalmente redondos (Pill shape)
-        enlace.style.border = "1px solid rgba(255, 255, 255, 0.1)"; // Borde casi invisible
-        
-        // 3. Posicionamiento
-        enlace.style.display = "inline-block"; // Necesario para que el padding funcione
-        enlace.style.transition = "all 0.3s ease"; // Suavidad en el hover
+        // 1. Crear el texto inicial
+        const prefijo = document.createTextNode("Diseño y desarrollo por: ");
+        contenedor.appendChild(prefijo);
 
-        // --- INTERACTIVIDAD ---
-        enlace.onmouseover = () => {
-            enlace.style.color = "#ffffff"; // Blanco puro al pasar el mouse
-            enlace.style.backgroundColor = "rgba(255, 255, 255, 0.15)"; // Fondo más visible
-            enlace.style.borderColor = "rgba(255, 255, 255, 0.3)";
-            enlace.style.cursor = "pointer";
-            enlace.style.transform = "translateY(-1px)"; // Se eleva un poquito
-        };
+        // 2. Crear Link Santiago
+        const linkSanti = document.createElement('a');
+        linkSanti.href = config.santiagoUrl;
+        linkSanti.textContent = "Santiago Cilento";
+        linkSanti.target = "_blank";
+        linkSanti.rel = "noopener noreferrer";
+        contenedor.appendChild(linkSanti);
 
-        enlace.onmouseout = () => {
-            enlace.style.color = "rgba(255, 255, 255, 0.7)";
-            enlace.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
-            enlace.style.borderColor = "rgba(255, 255, 255, 0.1)";
-            enlace.style.transform = "translateY(0)";
-        };
+        // 3. Crear separador
+        const separador = document.createTextNode(" y ");
+        contenedor.appendChild(separador);
 
-        contenedor.innerHTML = '';
-        contenedor.appendChild(enlace);
+        // 4. Crear Link Mateo
+        const linkMateo = document.createElement('a');
+        linkMateo.href = config.mateoUrl;
+        linkMateo.textContent = "Mateo Diaz Valdez";
+        linkMateo.target = "_blank";
+        linkMateo.rel = "noopener noreferrer";
+        contenedor.appendChild(linkMateo);
     }
 })();
