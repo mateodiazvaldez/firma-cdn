@@ -15,7 +15,7 @@
         // text-current: Hereda el color del texto del footer
         // hover:underline: Subraya al pasar el mouse
         // hover:text-opacity-80: Un pequeño cambio de opacidad para feedback visual
-        const linkClasses = "text-current no-underline hover:underline hover:text-opacity-80 cursor-pointer transition-all duration-200";
+        const linkClasses = "text-current underline hover:underline hover:text-opacity-80 cursor-pointer transition-all duration-200";
 
         // 1. Texto inicial
         contenedor.appendChild(document.createTextNode("Diseño y desarrollo por: "));
